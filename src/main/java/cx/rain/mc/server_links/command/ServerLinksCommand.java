@@ -28,8 +28,7 @@ public class ServerLinksCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 1 && "reload".equals(args[0])) {
             configManager.reload();
-            Bukkit.getServer().getOnlinePlayers().forEach(p -> PacketHelper.sendServerLinks(configManager.getLinks(), p));
-            sender.sendMessage("Done.");
+            sender.sendMessage("Done. Rejoin to make effect.");
             return true;
         }
 

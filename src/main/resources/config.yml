@@ -1,0 +1,10 @@
+server-links:
+  # Client known types:
+  # BUG_REPORT, COMMUNITY_GUIDELINES, SUPPORT, STATUS, FEEDBACK, COMMUNITY, WEBSITE, FORUMS, NEWS, ANNOUNCEMENTS
+  - type: WEBSITE
+    url: "https://github.com/MeowCraftMC/ServerLinks"
+  # Custom type with text
+  # Supports formatting codes (like &a) and hex colors (&#66ccff).
+  - type: CUSTOM
+    text: "&6Custom text"
+    url: "https://www.example.com"

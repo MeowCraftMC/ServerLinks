@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.rikonardo.papermake' version '1.0.6'
+}
+
+group = 'cx.rain.mc'
+version = '1.0.0'
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'spigotmc-repo'
+            url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        }
+        maven {
+            name = 'PaperMC repo'
+            url = 'https://repo.papermc.io/repository/maven-snapshots/'
+        }
+        maven {
+            name = 'dmulloy2-repo'
+            url = 'https://repo.dmulloy2.net/repository/public/'
+        }
+        mavenLocal()
+        maven {
+            name = 'Yuluo Maven'
+            url = 'https://maven.yuluo.dev/repository/maven-public/'
+        }
+        maven {
+            name = 'CodeMC NMS repo'
+            url = 'https://repo.codemc.io/repository/nms/'
+        }
+        maven {
+            name = 'sonatype'
+            url = 'https://oss.sonatype.org/content/groups/public/'
+        }
+    }
+
+    processResources {
+        def props = [version: version]
+        inputs.properties props
+        filteringCharset 'UTF-8'
+        filesMatching('plugin.yml') {
+            expand props
+        }
+    }
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    options.release = 17
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT'
+    compileOnly 'com.comphenix.protocol:ProtocolLib:5.1.0'
+    compileOnly 'org.jetbrains:annotations:24.0.0'
+}
+
+jar.finalizedBy(shadowJar)
